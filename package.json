@@ -1,0 +1,25 @@
+{
+  "name": "graphql-react-mdxdeck",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "mdx-deck deck/graphql.mdx",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mdx-deck": "^1.7.1",
+    "mdx-deck-code-surfer": "^0.4.0",
+    "raw-loader": "^0.5.1"
+  },
+  "dependencies": {
+    "apollo-boost": "^0.1.15",
+    "bulma": "^0.7.1",
+    "graphql": "^14.0.0",
+    "graphql-tag": "^2.9.2",
+    "react": "^16.4.2",
+    "react-apollo": "^2.1.11"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  human(id: "1000") {
+    name
+    height
+  }
+}
+
+{
+  "data": {
+    "human": {
+      "name": "Luke Skywalker",
+      "height": 1.72
+    }
+  }
+}
+
+{
+  human(id: "1000") {
+    name
+    height(unit: FOOT)
+  }
+}
+
+{
+  "data": {
+    "human": {
+      "name": "Luke Skywalker",
+      "height": 5.6430448
+    }
+  }
+}

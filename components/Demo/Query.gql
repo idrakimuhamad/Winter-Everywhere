@@ -1,0 +1,14 @@
+Query {
+  episode {
+    name
+    year
+  }
+}
+
+// Results
+{
+  "episode": {
+    "name": "Return of the Jedi",
+    "year": "1983"
+  }
+}

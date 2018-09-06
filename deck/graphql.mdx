@@ -1,0 +1,396 @@
+export { yellow as theme } from 'mdx-deck/themes'
+
+import { Head } from 'mdx-deck'
+import { Appear} from 'mdx-deck'
+import { Split } from 'mdx-deck/layouts'
+import { CodeSurfer } from 'mdx-deck-code-surfer'
+
+<Head>
+  <title>GraphQL and Apollo Client</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"/>
+</Head>
+
+# Introduction to GraphQL and Apollo Client in React
+
+---
+export default Split
+
+# What is GraphQL?
+
+<div>
+  <Appear>
+    <p>GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data.</p>
+    <p>GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need and nothing more, makes it easier to evolve APIs over time, and enables powerful developer tools</p>
+    <p>
+      A server-side runtime for executing queries by using a type system you define for your data, and doesn't tied to any specific database or storage engine and is instead backed by your existing code and data
+    </p>
+  </Appear>
+</div>
+---
+# Types System
+
+<div>
+  <Appear>
+    <p>By defining types and fields on those types, then providing functions for each field on each type</p>
+    <p>GraphQL APIs are organized in terms of types and fields, not endpoints, so you can access the full capabilities of your data from a single endpoint</p>
+    <p>Types to ensure Apps only ask for what’s possible and provide clear and helpful errors. Apps can use types to avoid writing manual parsing code.</p>
+  </Appear>
+</div>
+
+
+---
+``` graphql
+type Query {
+  me: User
+}
+
+type User {
+  id: ID
+  name: String
+}
+```
+---
+# Features
+---
+<CodeSurfer
+  title="Get exactly what you've asked for"
+  notes=""
+  code={require("!raw-loader!../components/Demo/Query.gql")}
+  lang="graphql"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    { lines: [1, 6], notes: "Query is one of the important type in GraphQL" },
+    { range: [2, 5], notes: "Get the episodes with only the fields you want" },
+    { range: [9, 14], notes: "Nothing more, nothing less" },
+  ]}
+/>
+---
+# You asked for it
+
+<Appear>
+  <p>Each queries will always return the same exact data that you wish to receive, nothing more nothing less.</p>
+  <p>GraphQL queries always return predictable results.</p>
+  <p>Apps using GraphQL are fast and stable because they control the data they get, not the server.</p>
+</Appear>
+---
+<CodeSurfer
+  title="Multiple resources in a single request"
+  notes=""
+  code={require("!raw-loader!../components/Demo/Multi.gql")}
+  lang="graphql"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    { lines: [2,3,8], notes: "We request for our hero data" },
+    { range: [4, 7], notes: "Friends is resource living in other table" },
+    { range: [13, 26], notes: "You get the hero data and their friendlist" },
+    { range: [15, 25], notes: "Friends of the hero included in the same request" },
+  ]}
+/>
+---
+# Less request, less headache
+
+<Appear>
+  <p>
+    Typical REST APIs require your app to load multiple endpoints and requests to gather
+    more than one resources.
+  </p>
+  <p>
+    On GraphQL, queries can access not just the properties of one resource but also
+    smoothly follow references between them, and you will be able to get all the data your
+    app needs in a single request.
+  </p>
+  <p>Apps using GraphQL can be quick even on slow mobile network connections.</p>
+</Appear>
+---
+<CodeSurfer
+  title="Query with argument"
+  notes=""
+  code={require("!raw-loader!../components/Demo/Arguments.gql")}
+  lang="graphql"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    { lines: [2], notes: "The ability to pass arguments to fields" },
+    { range: [8, 15], notes: "Get he data based on the given argument" },
+    { lines: [20], notes: "Pass argument for custom data tranform" },
+    { lines: [28], notes: "And get it done" }
+  ]}
+/>
+---
+# Arguments
+<div>
+  <Appear>
+    <p>
+      In a system like REST, you can only pass a single set of arguments - the query parameters and URL segments in your request
+    </p>
+    <p>
+      Every field and nested object can get its own set of arguments, making GraphQL a complete replacement for making multiple API fetches
+    </p>
+    <p>
+      You can even pass arguments into scalar fields, to implement data transformations once on the server, instead of on every client separately
+    </p>
+    <p>
+      Arguments can be of many different types
+    </p>
+    <p>
+      GraphQL comes with a default set of types, but a GraphQL server can also declare its own custom types, as long as they can be serialized into your transport format
+    </p>
+  </Appear>
+</div>
+---
+### But how to query on same field with different arguments?
+---
+<CodeSurfer
+  title="Aliases"
+  notes=""
+  code={require("!raw-loader!../components/Demo/Aliases.gql")}
+  lang="graphql"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    { lines: [2,5], notes: "We can now query for two human, with different arguments" },
+    { range: [11,18], notes: "Aliases will be used as the data field" },
+  ]}
+/>
+---
+<CodeSurfer
+  title="Fragments"
+  notes=" Fragments let you construct sets of fields, and then include them in queries where you need to"
+  code={require("!raw-loader!../components/Demo/Fragments.gql")}
+  lang="graphql"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    { lines: [2,5], notes: "Assuming we would want to display data of 2 heroes at the same time, where all of the query would likely be a repetitive fields" },
+    { range: [10, 16], notes: "We can place those queries and fields into fragments" },
+    { lines: [3, 6], notes: "Which we can use in the query" },
+    { range: [20, 41], notes: "Which will return the two sets of data accordingly" },
+    { range: [42, 60], notes: "Following their aliases" },
+  ]}
+/>
+---
+# Mutation
+
+<div>
+  <Appear>
+    <p>
+      In REST, any request might end up causing some side-effects on the server, but by convention it's suggested that one doesn't use GET requests to modify data
+    </p>
+    <p>
+      It's useful to establish a convention that any operations that cause writes should be sent explicitly via a mutation.
+    </p>
+  </Appear>
+</div>
+
+```notes
+1. GraphQL is similar - technically any query could be implemented to cause a data write. However, it's useful to establish a convention that any operations that cause writes should be sent explicitly via a mutation.
+2. Just like in queries, if the mutation field returns an object type, you can ask for nested fields. This can be useful for fetching the new state of an object after an update
+```
+---
+<CodeSurfer
+  title="Mutations"
+  notes=" Submit a review of an episode"
+  code={require("!raw-loader!../components/Demo/Mutations.gql")}
+  lang="graphql"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    { lines: [1], notes: "We create a mutation operation called CreateReviewForEpisode, which accept 2 variables, the episode and the review we are writing" },
+    { lines: [2], notes: "This is mutation type, which will use the variables pass on by the operation" },
+    { range: [3, 4], notes: "Notice that we include the field of the of the newly created review. This is useful when you're mutating into an existing data, so you can get the changes in one request" },
+    { range: [9, 15], notes: "This is the variables we declared for the operation" },
+    { range: [17, 24], notes: "Once the operation completed, it will return the field that we've asked for." },
+  ]}
+/>
+---
+# Multiple fields in mutations
+
+<div>
+  <Appear>
+    <p>
+      A mutation can contain multiple fields, just like a query with one distinction
+    </p>
+    <p>
+      While query fields are executed in parallel, mutation fields run in series, one after the other.
+    </p>
+    <p>
+      So when we sent 2 mutations in one request, the first is guaranteed to finish before the second begins, ensuring that we don't end up with a race condition with ourselves.
+    </p>
+  </Appear>
+</div>
+---
+# Apollo
+
+<div>
+  <Appear>
+    <p>
+      Apollo is a family of technologies you can incrementally add to your stack: Apollo Client to connect data to your UI, Apollo Engine for infrastructure and tooling, and Apollo Server to translate your REST API and backends into a GraphQL schema.
+    </p>
+    <p>
+      To put a universal API over your existing backend
+    </p>
+  </Appear>
+</div>
+
+```notes
+1. Before we talk about Apollo React, we delves into Apollo itself
+```
+---
+# Apollo Client
+
+Allows you to bind your GraphQL data to your UI, with only the data that you want. It also add some extra add on and advanced data management, like pagination, subscriptions, prefetching, and more when you need them.
+---
+# Available Client
+
+<div>
+  <p>React</p>
+  <p>Vue.js</p>
+  <p>Angular</p>
+  <p>Android</p>
+  <p>iOS</p>
+  <p>Meteor</p>
+  <p>More</p>
+</div>
+---
+<CodeSurfer
+  title="Query"
+  notes=""
+  code={require("!raw-loader!../components/Demo/apollo-query.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    { range: [1, 14], notes: "Apollo Client provide you the component to write your GraphQL query within your component" },
+    { range: [16, 23], notes: "You can then use the results to form your UI" },
+  ]}
+/>
+---
+<CodeSurfer
+  title="Mutations"
+  notes=""
+  code={require("!raw-loader!../components/Demo/apollo-mutations.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    { range: [1, 6], notes: "Same as query, Apollo Client provide you the component to compose your mutation requst" },
+    { range: [8, 18], notes: "With the given props, you can use to trigger the operation within your UI" },
+  ]}
+/>
+---
+# Apollo Client with React app
+
+<div>
+  <p>graphql</p>
+  <p>
+    apollo-boost: zero-config way to start using Apollo Client.
+  </p>
+  <p>react-apollo: React integration for Apollo Client</p>
+  <p>graphql-tag: A JavaScript template literal tag that parses GraphQL queries</p>
+  <p>A backend configured with GraphQL service</p>
+</div>
+
+```notes
+apollo-boost: It includes some sensible defaults, such as our recommended InMemoryCache and HttpLink, which come configured for you with our recommended settings.
+```
+---
+<CodeSurfer
+  title="Express Server"
+  notes="This example uses a simple Node.js server with a MongoDB as database"
+  code={require("!raw-loader!../components/graphql/server.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    { range: [1, 16], notes: "Packages" },
+    { range: [6, 14], notes: "GraphQL packages" },
+    { range: [20, 26], notes: "Connection to MongoDB" },
+    { range: [68, 88], notes: "The Todo type" },
+    { range: [91, 112], notes: "The query type, which uses Todo type that we've defined earlier" },
+    { range: [115, 157], notes: "The mutation type" },
+    { range: [118, 127], notes: "Create todo" },
+    { range: [128, 146], notes: "Update todo" },
+    { range: [147, 155], notes: "Delete todo" },
+    { range: [159, 163], notes: "GraphQL Schema" },
+    { range: [179, 193], notes: "Wire up graphQL with express" },
+    { range: [179, 185], notes: "Recommended to be set to a POST method for all external queries" },
+    { range: [187, 193], notes: "With GraphiQL enabled. GraphiQL is an in-browser IDE for exploring GraphQL." },
+    { range: [31, 63], notes: "The controller that will do all the DB operations" },
+  ]}
+/>
+---
+# GraphiQL
+
+[http://localhost:4000/graphql](http://localhost:4000/graphql?)
+---
+# Writing the query
+
+The easiest way to know what query to write is by writing the query in GraphiQL and copy and paste it in your app query.
+---
+<CodeSurfer
+  title="App.js"
+  notes=""
+  code={require("!raw-loader!../components/graphql/App.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    { range: [2, 3], notes: "We uses react-apollo and apollo-boost" },
+    { lines: [4], notes: "Todos just a component we created that will render our Todo list" },
+    { range: [6, 8], notes: "Set up the connection with the backend" },
+    { lines: [15, 32], notes: "Apollo Provider is the connector between Apollo Client and React, much like Redux's Provider" },
+    { lines: [28], notes: "We can then use Apollo in our component" },
+  ]}
+/>
+---
+<CodeSurfer
+  title="Todos.js"
+  notes=""
+  code={require("!raw-loader!../components/graphql/Todos.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    { lines: [2, 3], notes: "We want to use react apollo's Query and also graphql-tag" },
+    { lines: [4], notes: "Todo is a component that represent a single item of our todo" },
+    { lines: [7, 30], notes: "Query is a component provided by apollo client which you can use to construct a GraphQL query" },
+    { range: [8, 18], notes: "Similar like what we saw earlier, you can write the GraphQL query using the graphql-tag" },
+    { range: [10, 16], notes: "We want to get all todos and all the fields" },
+    { lines: [19], notes: "The Query component provided a callback with a some useful argument, such as loading, error and the actual data" },
+    { lines: [20], notes: "Which we can use to show loading UI..." },
+    { lines: [21], notes: "...Or to show an eror message when data loading failed" },
+    { range: [24, 30], notes: "We can then use the data to form our Todo list, which we supply to our Todo component to do its rendering job" },
+  ]}
+/>
+---
+<CodeSurfer
+  title="Todo.js"
+  notes="Lets take a look at our Todo component, which will render the Todo item and handle status update upon clicking"
+  code={require("!raw-loader!../components/graphql/Todo.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    { lines: [2], notes: "We plan to do status update upon clicking on the Todo item, so we will use Mutation in Todo component" },
+    { range: [5, 23], notes: "As seen on Query, you can also use the same graphql-tag to write the mutation query." },
+    { lines: [29, 30, 31, 32, 33, 34, 35, 48], notes: "Similar to Query, Mutation is a component provided by Apollo Client." },
+    { lines: [30], notes: "POST_MUTATION is the mutation script we wrote earlier" },
+    { range: [31, 35], notes: "Variables can be pass through the variable prop" },
+    { lines: [36, 47], notes: "The component provide a function with an argument for rendering which can be use to trigger the mutation" },
+    { lines: [41], notes: "We only need to bind it to an event handler and use the props" }
+  ]}
+/>
+---
+# Lets see it in action
+---
+import App from '../components/graphql/App.js'
+
+<App />
+---
+```jsx
+<CodeSnippet />
+```
+---
+# The end
