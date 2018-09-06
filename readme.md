@@ -1,6 +1,6 @@
 # Introduction deck for GraphQL and Apollo Client with React
 
-Tools
+### Tools
 
 https://github.com/jxnblk/mdx-deck
 
