@@ -8,7 +8,7 @@ import { CodeSurfer } from 'mdx-deck-code-surfer'
   <title>GraphQL and Apollo Client</title>
 </Head>
 
-# Introduction to GraphQL and Apollo Client in React
+# Introduction to GraphQL 📈 and Apollo Client 🚀 in React 
 
 ---
 
@@ -24,8 +24,7 @@ import { CodeSurfer } from 'mdx-deck-code-surfer'
   </Appear>
 </div>
 ---
-# Types System
-
+# Strong Types System 💪🏻
 <div>
   <Appear>
     <p>By defining types and fields on those types, then providing functions for each field on each type</p>
@@ -47,7 +46,7 @@ type User {
 }
 ```
 ---
-# Features
+# Features 👩🏻‍💻
 ---
 <CodeSurfer
   title="Get exactly what you've asked for"
@@ -63,7 +62,7 @@ type User {
   ]}
 />
 ---
-# You asked for it
+# You asked for it 📡
 
 <Appear>
   <p>Each queries will always return the same exact data that you wish to receive, nothing more nothing less.</p>
@@ -86,7 +85,7 @@ type User {
   ]}
 />
 ---
-# Less request, less headache
+# Less request, less headache 💆🏻‍♂️
 
 <Appear>
   <p>
@@ -110,13 +109,13 @@ type User {
   dark={false}
   steps={[
     { lines: [2], notes: "The ability to pass arguments to fields" },
-    { range: [8, 15], notes: "Get he data based on the given argument" },
+    { range: [8, 15], notes: "Get the data based on the given argument" },
     { lines: [20], notes: "Pass argument for custom data tranform" },
     { lines: [28], notes: "And get it done" }
   ]}
 />
 ---
-# Arguments
+# Arguments 🤦🏻‍♀️
 <div>
   <Appear>
     <p>
@@ -137,7 +136,7 @@ type User {
   </Appear>
 </div>
 ---
-### But how to query on same field with different arguments?
+### But how to query on same field with different arguments? 🤷🏿‍♂️
 ---
 <CodeSurfer
   title="Aliases"
@@ -147,10 +146,12 @@ type User {
   showNumbers={false}
   dark={false}
   steps={[
-    { lines: [2,5], notes: "We can now query for two human, with different arguments" },
+    { lines: [2,5], notes: "We can now query for two hero, with different arguments" },
     { range: [11,18], notes: "Aliases will be used as the data field" },
   ]}
 />
+---
+Assuming we would want to display data of 2 heroes at the same time, side by side, where all of the query would likely be a repetitive fields 👩🏻‍🎤👨🏻‍🎤
 ---
 <CodeSurfer
   title="Fragments"
@@ -160,7 +161,7 @@ type User {
   showNumbers={false}
   dark={false}
   steps={[
-    { lines: [2,5], notes: "Assuming we would want to display data of 2 heroes at the same time, where all of the query would likely be a repetitive fields" },
+    { lines: [2,5], notes: "" },
     { range: [10, 16], notes: "We can place those queries and fields into fragments" },
     { lines: [3, 6], notes: "Which we can use in the query" },
     { range: [20, 41], notes: "Which will return the two sets of data accordingly" },
@@ -168,7 +169,7 @@ type User {
   ]}
 />
 ---
-# Mutation
+# Mutation ➕➖
 
 <div>
   <Appear>
@@ -194,9 +195,11 @@ type User {
   showNumbers={false}
   dark={false}
   steps={[
-    { lines: [1], notes: "We create a mutation operation called CreateReviewForEpisode, which accept 2 variables, the episode and the review we are writing" },
+    { lines: [1], notes: "We create a mutation operation called CreateReviewForEpisode..." },
+    { lines: [1], notes: "...which accept 2 variables, the episode and the review we are writing" },
     { lines: [2], notes: "This is mutation type, which will use the variables pass on by the operation" },
-    { range: [3, 4], notes: "Notice that we include the field of the of the newly created review. This is useful when you're mutating into an existing data, so you can get the changes in one request" },
+    { range: [3, 4], notes: "Notice that we include the field of the of the newly created review." }, 
+    { range: [3, 4], notes: "This is useful when you're mutating into an existing data, so you can get the changes in one request" },
     { range: [9, 15], notes: "This is the variables we declared for the operation" },
     { range: [17, 24], notes: "Once the operation completed, it will return the field that we've asked for." },
   ]}
@@ -218,7 +221,7 @@ type User {
   </Appear>
 </div>
 ---
-# Apollo
+# Apollo 🚀
 
 <div>
   <Appear>
@@ -277,7 +280,7 @@ Allows you to bind your GraphQL data to your UI, with only the data that you wan
   ]}
 />
 ---
-# Apollo Client with React app
+# Apollo Client with React app 🚀 + 🌐
 
 <div>
   <p>graphql</p>
@@ -335,10 +338,10 @@ The easiest way to know what query to write is by writing the query in GraphiQL 
   dark={false}
   steps={[
     { range: [2, 3], notes: "We uses react-apollo and apollo-boost" },
-    { lines: [4], notes: "Todos just a component we created that will render our Todo list" },
-    { range: [6, 8], notes: "Set up the connection with the backend" },
-    { lines: [15, 32], notes: "Apollo Provider is the connector between Apollo Client and React, much like Redux's Provider" },
-    { lines: [28], notes: "We can then use Apollo in our component" },
+    { lines: [5], notes: "Todos is a component that will render our Todo list" },
+    { range: [7, 9], notes: "Set up the connection with the backend" },
+    { lines: [54, 73], notes: "Apollo Provider is the connector between Apollo Client and React, much like Redux's Provider" },
+    { lines: [69], notes: "We can then use Apollo in our component" },
   ]}
 />
 ---
@@ -351,14 +354,14 @@ The easiest way to know what query to write is by writing the query in GraphiQL 
   dark={false}
   steps={[
     { lines: [2, 3], notes: "We want to use react apollo's Query and also graphql-tag" },
-    { lines: [4], notes: "Todo is a component that represent a single item of our todo" },
-    { lines: [7, 30], notes: "Query is a component provided by apollo client which you can use to construct a GraphQL query" },
-    { range: [8, 18], notes: "Similar like what we saw earlier, you can write the GraphQL query using the graphql-tag" },
-    { range: [10, 16], notes: "We want to get all todos and all the fields" },
-    { lines: [19], notes: "The Query component provided a callback with a some useful argument, such as loading, error and the actual data" },
-    { lines: [20], notes: "Which we can use to show loading UI..." },
-    { lines: [21], notes: "...Or to show an eror message when data loading failed" },
-    { range: [24, 30], notes: "We can then use the data to form our Todo list, which we supply to our Todo component to do its rendering job" },
+    { lines: [5], notes: "Todo is a component that represent a single item of our todo" },
+    { lines: [12, 35], notes: "Query is a component provided by apollo client which you can use to construct a GraphQL query" },
+    { range: [13, 22], notes: "Similar like what we saw earlier, you can write the GraphQL query using the graphql-tag" },
+    { range: [15, 21], notes: "We want to get all todos and all the fields" },
+    { lines: [24], notes: "The Query component provide us a callback with a some useful arguments" },
+    { lines: [25], notes: "Which we can use to show loading UI..." },
+    { lines: [26], notes: "...Or to show an eror message when data loading failed" },
+    { range: [29, 31], notes: "We can then use the data to map Todo list" },
   ]}
 />
 ---
@@ -371,24 +374,24 @@ The easiest way to know what query to write is by writing the query in GraphiQL 
   dark={false}
   steps={[
     { lines: [2], notes: "We plan to do status update upon clicking on the Todo item, so we will use Mutation in Todo component" },
-    { range: [5, 23], notes: "As seen on Query, you can also use the same graphql-tag to write the mutation query." },
-    { lines: [29, 30, 31, 32, 33, 34, 35, 48], notes: "Similar to Query, Mutation is a component provided by Apollo Client." },
-    { lines: [30], notes: "POST_MUTATION is the mutation script we wrote earlier" },
-    { range: [31, 35], notes: "Variables can be pass through the variable prop" },
-    { lines: [36, 47], notes: "The component provide a function with an argument for rendering which can be use to trigger the mutation" },
-    { lines: [41], notes: "We only need to bind it to an event handler and use the props" }
+    { range: [6, 24], notes: "As seen on Query, you can also use the same graphql-tag to write the mutation query." },
+    { lines: [43, 44, 45, 46, 47, 48, 49, 60], notes: "Similar to Query, Mutation is a component provided by Apollo Client." },
+    { lines: [44], notes: "POST_MUTATION is the mutation script we wrote earlier" },
+    { range: [45, 49], notes: "Variables can be pass through the variable prop" },
+    { lines: [50, 59], notes: "The component provide a function with an argument for rendering which can be use to trigger the mutation" },
+    { lines: [55], notes: "We only need to bind it to an event handler and use the props" }
   ]}
 />
 ---
-# Lets see it in action
+# Lets see it in action 🤔
 ---
 import App from '../components/graphql/App.js'
 
-# Demo
+# Demo 🙄
 
 <App />
 ---
-# That's it!
+# That's it! 😬
 
 <p>98% of what ever you read in here are a direct words from the links below, so go read on.</p>
 
@@ -397,9 +400,9 @@ https://graphql.org/
 https://www.apollographql.com/
 
 ---
-# Resources
+# Resources 📦
 
-Get the deck at https://github.com/idrakimuhamad/Winter-Everywhere. Can also look in Confluence later on for write up.
+Get the deck at https://github.com/idrakimuhamad/Winter-Everywhere. You can also find it in Confluence later on for write up.
 
 ---
-# End
+# End 🤙🏻
